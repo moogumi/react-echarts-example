@@ -26,7 +26,7 @@ const HumanList = ({humans}) => {
     
     return (
         <div className="container">
-            <PageTitle pageTitle={"Person List"} />
+            <PageTitle pageTitle={"Human List"} />
                                     
             <div className="collection">                                    
             <a className="collection-item active light-green valign-wrapper">

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import HumanList from './components/humans/HumanList';
-import HumanChart from './components/charts/HumanChart';
+import PopulationChart from './components/charts/PopulationChart';
 import AddHuman from './components/humans/AddHuman';
 import HumanSummary from './components/humans/HumanSummary';
 import Footer from './components/layout/Footer';
@@ -19,7 +19,7 @@ class App extends Component {
             <Route exact path="/" component = { HumanList }></Route>                        
             <Route path="/add" component = { AddHuman }></Route>                        
             <Route path="/human/:id" component = { HumanSummary }></Route>
-            <Route path="/chart" component = { HumanChart }></Route>
+            <Route path="/chart" component = { PopulationChart }></Route>
             <Route path="*" component={ _404 }/>
           </Switch>          
           <Footer />

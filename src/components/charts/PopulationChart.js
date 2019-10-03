@@ -1,8 +1,9 @@
 import React from 'react'
 import ReactEcharts from 'echarts-for-react';
 import { connect } from 'react-redux';
+import PageTitle from '../layout/PageTitle';
 
-const HumanChart = ({ humans }) =>{
+const PopulationChart = ({ humans }) =>{
 
     const compareAge = ( a, b ) => {        
         if (a.age < b.age )
@@ -31,10 +32,32 @@ const HumanChart = ({ humans }) =>{
                 data:['Humans by Ages']
             },
             xAxis: {
-                data: ages
+                data: ages,
+                name: "age",
+                axisLine :{
+                    lineStyle :{
+                        color: "#616161",
+                        width: 2
+                    }
+                  },
+                  axisLabel :{           
+                    color: "#616161",         
+                    fontWeight : "bold",                        
+                  }                  
             },
             yAxis: {
                 interval: 1,
+                name: "population",
+                axisLine :{
+                  lineStyle :{
+                      color: "#616161",
+                      width: 2
+                  }
+                },
+                axisLabel :{         
+                    color: "#616161",           
+                    fontWeight : "bold",                        
+                }              
             },
             series: [{
                 name: 'Humans',
@@ -48,16 +71,8 @@ const HumanChart = ({ humans }) =>{
     
     return (
         <div className="container"> 
-        <div className="row">
-            <div className="col s12">
-                <h4 className="light-green-text">Population chart</h4>                            
-            </div>
-        </div>
-        <ReactEcharts
-            option={getOption()}
-            notMerge={true}
-            lazyUpdate={true}                            
-            />
+        <PageTitle pageTitle={"Population Chart"} />
+        <ReactEcharts option={getOption()} />
         </div>            
     )
 }
@@ -68,4 +83,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default  connect(mapStateToProps)(HumanChart);
+export default  connect(mapStateToProps)(PopulationChart);

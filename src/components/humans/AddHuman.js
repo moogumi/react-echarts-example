@@ -26,19 +26,19 @@ class Human extends Component {
     render() {
         return (
             <div className="container">
-            <PageTitle pageTitle={"Human Summary"} />
+            <PageTitle pageTitle={"Add Human"} />
                 <form onSubmit={this.handleSumbit} className="white">                    
                     <div className="input-field">
                         <label htmlFor="firstName">First Name</label>
-                        <input type="text" required id="firstName" onChange={this.handleChange} />
+                        <input type="text" required id="firstName" onChange={this.handleChange} autocomplete="nope"/>
                     </div>
                     <div className="input-field">
                         <label htmlFor="lastName">Last Name</label>
-                        <input type="text" required id="lastName" onChange={this.handleChange} />
+                        <input type="text" required id="lastName" onChange={this.handleChange} autocomplete="nope"/>
                     </div>
                     <div className="input-field">
                         <label htmlFor="age">Age</label>
-                        <input type="number" required id="age" min="1" max="150" step="1" onChange={this.handleChange}/>
+                        <input type="number" required id="age" min="1" max="150" step="1" onChange={this.handleChange} autocomplete="nope"/>
                     </div>
                     <div className="input-field">
                         <button className="btn light-green z-depth-0">Add</button>

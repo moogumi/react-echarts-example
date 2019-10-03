@@ -3,7 +3,7 @@ import { addHuman } from '../../store/actions/addHuman';
 import { connect } from 'react-redux';
 import PageTitle from '../layout/PageTitle';
 
-class Human extends Component {
+class AddHuman extends Component {
     
     state = {
         firstName : '',
@@ -30,15 +30,15 @@ class Human extends Component {
                 <form onSubmit={this.handleSumbit} className="white">                    
                     <div className="input-field">
                         <label htmlFor="firstName">First Name</label>
-                        <input type="text" required id="firstName" onChange={this.handleChange} autocomplete="nope" maxlength="30"/>
+                        <input type="text" required id="firstName" onChange={this.handleChange} autoComplete="nope" maxLength="30"/>
                     </div>
                     <div className="input-field">
                         <label htmlFor="lastName">Last Name</label>
-                        <input type="text" required id="lastName" onChange={this.handleChange} autocomplete="nope" maxlength="30"/>
+                        <input type="text" required id="lastName" onChange={this.handleChange} autoComplete="nope" maxLength="30"/>
                     </div>
                     <div className="input-field">
                         <label htmlFor="age">Age</label>
-                        <input type="number" required id="age" min="1" max="150" step="1" onChange={this.handleChange} autocomplete="nope" />
+                        <input type="number" required id="age" min="1" max="150" step="1" onChange={this.handleChange} autoComplete="nope" />
                     </div>
                     <div className="input-field">
                         <button className="btn light-green z-depth-0">Add</button>
@@ -55,4 +55,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(Human)
+export default connect(null, mapDispatchToProps)(AddHuman)

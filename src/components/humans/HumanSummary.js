@@ -1,14 +1,32 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router'
-import { connect } from 'react-redux';
 import './HumanSummary.css'
 import PageTitle from '../layout/PageTitle'
+import { getHumanByIdUrl } from '../../api/apiHuman';
+import axios from 'axios';
 
-const HumanSummary = (props) => {
-
-    const { human } = props;
+const HumanSummary = ( props ) => {
+        
+    const [error, setErrors] = useState(false);
+    const [human, setHuman] = useState({});
     
-    if (!human){
+    useEffect(() => {
+        const fetchData = async () => {
+        const result = axios(getHumanByIdUrl(props.match.params.id))
+            .then(response => { 
+                console.log(response);
+                setHuman(response.data.data)}
+            )
+            .catch(error => {
+                setErrors(error)            
+            });
+
+        }
+        
+        fetchData();
+    }, []);        
+
+    if (error){
         return <Redirect to='/_404' />
     }
 
@@ -33,11 +51,4 @@ const HumanSummary = (props) => {
 }
 
 
-const mapStateToProps = (state, ownProps) => {            
-    console.log(state);
-    return {                
-        human: state.humans.list.find(human => {return human.id === ownProps.match.params.id})
-    }
-}
-
-export default  connect(mapStateToProps)(HumanSummary);
+export default  HumanSummary;

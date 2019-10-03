@@ -1,12 +1,24 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PageTitle from '../layout/PageTitle';
-import { connect } from 'react-redux';
 import './HumanList.css';
+import { getHumanListUrl } from '../../api/apiHuman';
+import axios from 'axios';
+import { connect } from 'react-redux';
 
-const HumanList = ({humans}) => {   
+const HumanList = ({humanList}) => {
     
-    const humanList = humans.map(human => {
+    const [humans, setHumans] = useState([]);
+    
+    useEffect(() => {        
+        const fetchData = async () => {            
+            const result = await axios.get(getHumanListUrl());       
+            setHumans(result.data.data);            
+        }
+        fetchData();
+    }, [humanList]);
+  
+    const humanCollection = humans && humans.map(human => {
         return (
             <Link to={'/human/' + human.id} className="collection-item" key={human.id}>
                 <div className="row">
@@ -23,9 +35,8 @@ const HumanList = ({humans}) => {
             </Link>
         )
     })
-    
-    return (
-        <div className="container">
+    return (      
+    <div className="container">
             <PageTitle pageTitle={"Person List"} />            
             <div className="collection-header">
                 <div className="row flow-text">
@@ -41,16 +52,16 @@ const HumanList = ({humans}) => {
                 </div>
             </div>                            
             <div className="collection">                                    
-            { humanList }                 
+            { humanCollection }                 
             </div>             
         </div>
-    )    
-}
+    );
+};
 
 const mapStateToProps = (state) => {            
     return {                
-        humans: state.humans.list
+        humanList: state.humans.list
     }
 }
 
-export default  connect(mapStateToProps)(HumanList);
+export default connect(mapStateToProps)(HumanList)

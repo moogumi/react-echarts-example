@@ -1,9 +1,21 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import ReactEcharts from 'echarts-for-react';
-import { connect } from 'react-redux';
 import PageTitle from '../layout/PageTitle';
+import { getHumanListUrl } from '../../api/apiHuman';
+import axios from 'axios';
 
-const PopulationChart = ({ humans }) =>{
+
+const PopulationChart = () =>{
+
+    const [humans, setHumans] = useState([]);
+    
+    useEffect(() => {        
+        const fetchData = async () => {            
+            const result = await axios.get(getHumanListUrl());       
+            setHumans(result.data.data);            
+        }
+        fetchData();
+    }, []);
 
     const compareAge = ( a, b ) => {        
         if (a.age < b.age )
@@ -14,9 +26,9 @@ const PopulationChart = ({ humans }) =>{
       }
 
     const sorted = humans && [...humans].sort(compareAge);    
-    const ages = [...new Set(sorted.map( human =>  { return( human.age + " y.o." ) }))];
+    const ages = sorted && [...new Set(sorted.map( human =>  { return( human.age + " y.o." ) }))];
  
-    var humansByAge = sorted.reduce((p, c) => {        
+    const humansByAge = sorted && sorted.reduce((p, c) => {        
         if (!p.hasOwnProperty(c.age)) {
           p[c.age] = 0;
         }
@@ -24,7 +36,7 @@ const PopulationChart = ({ humans }) =>{
         return p;
       }, {});        
 
-    var counts = Object.keys(humansByAge).map(k => { return humansByAge[k]});        
+      const counts = humansByAge && Object.keys(humansByAge).map(k => { return humansByAge[k]});        
 
     const getOption = () =>{
         return {                        
@@ -71,16 +83,10 @@ const PopulationChart = ({ humans }) =>{
     
     return (
         <div className="container"> 
-        <PageTitle pageTitle={"Population Chart"} />
-        <ReactEcharts option={getOption()} />
+          <PageTitle pageTitle={"Population Chart"} />
+          <ReactEcharts option={ getOption() } />
         </div>            
     )
 }
-const mapStateToProps = (state) => {        
-    console.log(state);
-    return {                
-        humans: state.humans.list
-    }
-}
 
-export default  connect(mapStateToProps)(PopulationChart);
+export default PopulationChart;

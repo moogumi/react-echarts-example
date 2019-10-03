@@ -13,7 +13,7 @@ class App extends Component {
   render () {
     return (
       <BrowserRouter>
-        <div className="App flow-text">          
+        <div className="App">          
           <Navbar />          
           <Switch>
             <Route exact path="/" component = { HumanList }></Route>                        

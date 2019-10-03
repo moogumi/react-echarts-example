@@ -3,15 +3,15 @@
 }
 
 .container{
-    position: relative; 
-    min-height: 100%;
+    position: relative;     
+    overflow: hidden;  
+    height: 100%;      
 }
 
 .collection{
     margin-left: 80px;
     margin-top: 20px;    
 }
-
 
 div{
     color: #616161 ;

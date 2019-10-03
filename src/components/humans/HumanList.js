@@ -25,7 +25,7 @@ const HumanList = ({humans}) => {
     })
     
     return (
-        <div className="container" style={{ 'overflow-y': 'hidden'}}>
+        <div className="container">
             <PageTitle pageTitle={"Person List"} />
                                     
             <div className="collection">                                    

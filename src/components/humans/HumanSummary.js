@@ -13,7 +13,7 @@ const HumanSummary = (props) => {
     }
 
     return (        
-        <div className = "container">
+        <div className = "container flow-text">
         <PageTitle pageTitle={"Human Summary"} />
 
         <div className="row">

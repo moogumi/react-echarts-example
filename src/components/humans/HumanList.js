@@ -8,15 +8,15 @@ const HumanList = ({humans}) => {
     
     const humanList = humans.map(human => {
         return (
-            <Link to={'/human/' + human.id} className="collection-item valign-wrapper" key={human.id}>
+            <Link to={'/human/' + human.id} className="collection-item" key={human.id}>
                 <div className="row">
-                    <div className="col s4">
+                    <div className="col s5">
                         { human.firstName }                
                     </div>
-                    <div className="col s4">
+                    <div className="col s5">
                         { human.lastName}                
                     </div>
-                    <div className="col s4 right-align">
+                    <div className="col s2 right-align">
                         { human.age } y.o.                
                     </div>
                 </div>                
@@ -26,28 +26,26 @@ const HumanList = ({humans}) => {
     
     return (
         <div className="container">
-            <PageTitle pageTitle={"Person List"} />
-                                    
-            <div className="collection">                                    
-            <a className="collection-item active light-green valign-wrapper">
-                <div className="row">
-                    <div className="col s4 white-text">
+            <PageTitle pageTitle={"Person List"} />            
+            <div className="collection-header">
+                <div className="row flow-text">
+                    <div className="col s5 collection-header-item">
                         First Name
                     </div>
-                    <div className="col s4 white-text">
+                    <div className="col s5 collection-header-item">
                         Last Name
                     </div>
-                    <div className="col s4 white-text right-align">
+                    <div className="col s2 collection-header-item-last">
                         Age
                     </div>
                 </div>
-            </a>                
+            </div>                            
+            <div className="collection">                                    
             { humanList }                 
             </div>             
         </div>
     )    
 }
-
 
 const mapStateToProps = (state) => {            
     return {                

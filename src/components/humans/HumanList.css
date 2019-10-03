@@ -9,8 +9,27 @@
 }
 
 .collection{
+    overflow: auto;
+    max-height: calc(100vh - 400px);
+    min-height: 42.5px;
+    margin-left: 80px;      
+}
+
+.collection-header{
     margin-left: 80px;
     margin-top: 20px;    
+    height:45px;        
+    background-color: #8bc34a;    
+}
+
+.collection-header-item{
+    color: #fff;        
+    text-align: left;
+}
+
+.collection-header-item-last{
+    color: #fff;    
+    text-align: right;
 }
 
 div{

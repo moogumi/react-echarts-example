@@ -1,5 +1,20 @@
 const initState = {
-    list: []
+    list: [
+        {id :'1', firstName: 'edd', lastName: 'kr', age: 25},
+        {id :'1', firstName: 'edd', lastName: 'kr', age: 25},
+        {id :'1', firstName: 'edd', lastName: 'kr', age: 25},
+        {id :'1', firstName: 'edd', lastName: 'kr', age: 25},
+        {id :'1', firstName: 'edd', lastName: 'kr', age: 25},
+        {id :'1', firstName: 'edd', lastName: 'kr', age: 25},
+        {id :'1', firstName: 'edd', lastName: 'kr', age: 25},
+        {id :'1', firstName: 'edd', lastName: 'kr', age: 25},
+        {id :'1', firstName: 'edd', lastName: 'kr', age: 25},
+        {id :'1', firstName: 'edd', lastName: 'kr', age: 25},
+        {id :'1', firstName: 'edd', lastName: 'kr', age: 25},
+        {id :'1', firstName: 'edd', lastName: 'kr', age: 25},
+        {id :'1', firstName: 'edd', lastName: 'kr', age: 25},
+        {id :'1', firstName: 'edd', lastName: 'kr', age: 25}
+    ]
 }
 
 const humanReducer = (state = initState, action) => {    

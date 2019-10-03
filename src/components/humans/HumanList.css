@@ -1,10 +1,17 @@
 .row{
     margin-bottom: 0;
 }
+
+.container{
+    position: relative; 
+    min-height: 100%;
+}
+
 .collection{
     margin-left: 80px;
-    margin-top: 20px;
+    margin-top: 20px;    
 }
+
 
 div{
     color: #616161 ;

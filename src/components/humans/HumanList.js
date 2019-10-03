@@ -6,16 +6,19 @@ import { getHumanListUrl } from '../../api/apiHuman';
 import axios from 'axios';
 import { connect } from 'react-redux';
 
-const HumanList = ({humanList}) => {
+const HumanList = ({ humanList }) => {
     
+    const [error, setError] = useState(false);
     const [humans, setHumans] = useState([]);
     
     useEffect(() => {        
         const fetchData = async () => {            
-            const result = await axios.get(getHumanListUrl());       
+            const result = await axios.get(getHumanListUrl());            
             setHumans(result.data.data);            
         }
-        fetchData();
+        fetchData().catch((err) =>{
+            return setError(err);
+        });
     }, [humanList]);
   
     const humanCollection = humans && humans.map(human => {

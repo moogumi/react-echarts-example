@@ -7,24 +7,18 @@ import axios from 'axios';
 
 const HumanSummary = ( props ) => {
         
-    const [error, setErrors] = useState(false);
+    const [error, setError] = useState(false);
     const [human, setHuman] = useState({});
-    
-    useEffect(() => {
-        const fetchData = async () => {
-        const result = axios(getHumanByIdUrl(props.match.params.id))
-            .then(response => { 
-                console.log(response);
-                setHuman(response.data.data)}
-            )
-            .catch(error => {
-                setErrors(error)            
-            });
-
-        }
         
-        fetchData();
-    }, []);        
+    useEffect(() => {        
+        const fetchData = async () => {            
+            const result = await axios(getHumanByIdUrl(props.match.params.id));            
+            setHuman(result.data.data);            
+        }
+        fetchData().catch((err) =>{
+            return setError(err);
+        });
+    }, []);
 
     if (error){
         return <Redirect to='/_404' />

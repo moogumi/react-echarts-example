@@ -32,11 +32,11 @@ class AddHuman extends Component {
                 <form onSubmit={this.handleSumbit} className="white">                    
                     <div className="input-field">
                         <label htmlFor="firstName">First Name</label>
-                        <input type="text" required id="firstName" onChange={this.handleChange} autoComplete="nope" maxLength="30"/>
+                        <input type="text" required id="firstName" name="firstName" onChange={this.handleChange} autoComplete="nope" maxLength="30" pattern="[\p{L}]+"/>
                     </div>
                     <div className="input-field">
                         <label htmlFor="lastName">Last Name</label>
-                        <input type="text" required id="lastName" onChange={this.handleChange} autoComplete="nope" maxLength="30"/>
+                        <input type="text" required id="lastName" onChange={this.handleChange} autoComplete="nope" maxLength="30" pattern="[\p{L}]+"/>
                     </div>
                     <div className="input-field">
                         <label htmlFor="age">Age</label>

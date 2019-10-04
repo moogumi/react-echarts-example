@@ -2,23 +2,21 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PageTitle from '../layout/PageTitle';
 import './HumanList.css';
-import { getHumanListUrl } from '../../api/apiHuman';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router'
 import { getHumanList } from '../../store/actions/humanActions';
 import PropTypes from 'prop-types';
 
-class HumanList extends Component {        
+class HumanList extends Component {
 
-    componentDidMount() {          
+    componentDidMount() {
         this.props.getHumanList();
-    }       
+    }
 
     render() {
         const { humanList, humanListError } = this.props;
 
-        if (humanListError) {               
+        if (humanListError) {
             return <Redirect to='/error' />
         }
 
@@ -27,22 +25,22 @@ class HumanList extends Component {
                 <Link to={'/human/' + human.id} className="collection-item" key={human.id}>
                     <div className="row">
                         <div className="col s5">
-                            { human.firstName }                
+                            {human.firstName}
                         </div>
                         <div className="col s5">
-                            { human.lastName}                
+                            {human.lastName}
                         </div>
                         <div className="col s2 right-align">
-                            { human.age } y.o.                
+                            {human.age} y.o.
                         </div>
-                    </div>                
+                    </div>
                 </Link>
             )
-        })        
-        
-        return (      
+        })
+
+        return (
             <div className="container">
-                <PageTitle pageTitle={"Human List"} />            
+                <PageTitle pageTitle={"Human List"} />
                 <div className="collection-header">
                     <div className="row flow-text">
                         <div className="col s5 collection-header-item">
@@ -55,13 +53,13 @@ class HumanList extends Component {
                             Age
                         </div>
                     </div>
-                </div>                            
-                <div className="collection">                                    
-                { humanCollection }                 
-                </div>             
+                </div>
+                <div className="collection">
+                    {humanCollection}
+                </div>
             </div>
         );
-    }        
+    }
 };
 
 HumanList.propTypes = {
@@ -69,11 +67,11 @@ HumanList.propTypes = {
     humanListError: PropTypes.bool.isRequired
 }
 
-const mapStateToProps = (state) => {                    
+const mapStateToProps = (state) => {
     const { humanList, humanListError } = state.humans;
-    return {                
+    return {
         humanList,
-        humanListError        
+        humanListError
     }
 }
 

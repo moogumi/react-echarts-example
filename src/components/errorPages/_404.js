@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const _404 = () => (
 
-    <div className="container ">        
+    <div className="container ">
         <h1 className="light-green-text center-align" >
             Error 404
         </h1>

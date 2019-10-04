@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const UnknownChart = () => (
 
-    <div className="container ">        
+    <div className="container ">
         <h1 className="red-text center-align" >
             Unknown Chart requested
         </h1>

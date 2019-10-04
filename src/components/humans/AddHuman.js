@@ -2,41 +2,40 @@ import React, { Component } from 'react';
 import { addHuman } from '../../store/actions/humanActions';
 import { connect } from 'react-redux';
 import PageTitle from '../layout/PageTitle';
-import PropTypes from 'prop-types';
 
 class AddHuman extends Component {
-    
+
     state = {
-        firstName : '',
+        firstName: '',
         lastName: '',
-        age : 0
+        age: 0
     }
-    
-    handleChange = (e) => {        
+
+    handleChange = (e) => {
         this.setState({
             [e.target.id]: e.target.value
         })
     }
 
-    handleSumbit = (e) => {        
-        e.preventDefault();        
+    handleSumbit = (e) => {
+        e.preventDefault();
         this.props.addHuman(this.state);
         this.props.history.push('/');
     }
 
-    render() {        
+    render() {
 
         return (
             <div className="container">
-            <PageTitle pageTitle={"Add Human"} />
-                <form onSubmit={this.handleSumbit} className="white">                    
+                <PageTitle pageTitle={"Add Human"} />
+                <form onSubmit={this.handleSumbit} className="white">
                     <div className="input-field">
                         <label htmlFor="firstName">First Name</label>
-                        <input type="text" required id="firstName" name="firstName" onChange={this.handleChange} autoComplete="nope" maxLength="30" pattern="[\p{L}]+"/>
+                        <input type="text" required id="firstName" name="firstName" onChange={this.handleChange} autoComplete="nope" maxLength="30" pattern="[\p{L}]+" />
                     </div>
                     <div className="input-field">
                         <label htmlFor="lastName">Last Name</label>
-                        <input type="text" required id="lastName" onChange={this.handleChange} autoComplete="nope" maxLength="30" pattern="[\p{L}]+"/>
+                        <input type="text" required id="lastName" onChange={this.handleChange} autoComplete="nope" maxLength="30" pattern="[\p{L}]+" />
                     </div>
                     <div className="input-field">
                         <label htmlFor="age">Age</label>

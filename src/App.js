@@ -10,25 +10,25 @@ import _404 from './components/errorPages/_404';
 import UnknownError from './components/errorPages/UnknownError';
 
 class App extends Component {
-  render () {
+  render() {
     return (
       <BrowserRouter>
-        <div className="App">          
-          <Navbar />          
+        <div className="App">
+          <Navbar />
           <Switch>
-            <Route exact path="/" component = { HumanList }></Route>                        
-            <Route path="/add" component = { AddHuman }></Route>                        
-            <Route path="/human/:id" component = { HumanSummary }></Route>
+            <Route exact path="/" component={HumanList}></Route>
+            <Route path="/add" component={AddHuman}></Route>
+            <Route path="/human/:id" component={HumanSummary}></Route>
 
             <Route path='/chart' render={(props) => (
-              <Statistics {...props} chartType={ "HumanAgeGroups" }/>
-            )}/>            
+              <Statistics {...props} chartType={"HumanAgeGroups"} />
+            )} />
 
-            <Route path="/error" component = { UnknownError }></Route>
-            <Route path="*" component={ _404 }/>
-          </Switch>          
+            <Route path="/error" component={UnknownError}></Route>
+            <Route path="*" component={_404} />
+          </Switch>
           <Footer />
-        </div>  
+        </div>
       </BrowserRouter>
     )
   }

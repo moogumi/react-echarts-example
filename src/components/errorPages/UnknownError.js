@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const UnknownError = () => (
 
-    <div className="container ">        
+    <div className="container ">
         <h1 className="red-text center-align" >
             Unexpected error
         </h1>

@@ -8,22 +8,14 @@ const compareAge = ( a, b ) => {
     return 0;
 }
 
-export const getChartData = (humanChart) => {
+export const getHumanAgeGroupChartData = (humanChart) => {
     const sorted = humanChart && [...humanChart].sort(compareAge);    
-    const ages = sorted && [...new Set(sorted.map( human =>  { return( human.age + " y.o." ) }))];
- 
-    const humansByAge = sorted && sorted.reduce((p, c) => {        
-        if (!p.hasOwnProperty(c.age)) {
-            p[c.age] = 0;
-        }
-        p[c.age]++;
-        return p;
-      }, {});        
-    const counts = humansByAge && Object.keys(humansByAge).map(k => { return humansByAge[k]});  
+    const ages = sorted && sorted.map( human =>  { return( human.age + " y.o." ) });
+    const counts = sorted && sorted.map( human =>  { return( human.count ) }); 
     return [ages, counts];
 }
 
-export const getChartOptions = (xData, yData) =>{
+export const getHumanAgeGroupChartOptions = (xData, yData) =>{
     return {                        
         legend: {
             data:['Humans by Ages']

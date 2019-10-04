@@ -26,7 +26,7 @@ const HumanSummary = ( props ) => {
         fetchData().catch((err) =>{
             return setError(err);
         });
-    }, []);
+    }, [props.match.params.id]);
 
     if (error){
         return <Redirect to='/_404' />

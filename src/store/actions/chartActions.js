@@ -1,9 +1,13 @@
 import axios from 'axios';
 import { getHumanChartUrl } from '../../api/apiHuman';
 
-export const getHumanChart = () => {
-    return (dispatch, getState) => {                         
-        axios.get(getHumanChartUrl())
+export const getHumanChart = (chartType) => {
+    return (dispatch, getState) => {        
+        
+        axios.post(getHumanChartUrl(), 
+        {
+            chartType 
+        })        
         .then((response) => {                                     
             return dispatch({type: 'HUMAN_CHART_SUCCESS', humanChart: response.data.data});            
         }).catch((error) => {                                                   

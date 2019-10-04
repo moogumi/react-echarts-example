@@ -8,7 +8,7 @@ export const getHumanListUrl = () => {
 
 export const getHumanChartUrl = () => {           
     return (        
-        baseUrl + '/humans/'
+        baseUrl + '/chartData/'
     )    
 }
 

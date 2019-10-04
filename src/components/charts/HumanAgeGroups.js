@@ -7,20 +7,21 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router'
 import { getHumanChart } from '../../store/actions/chartActions';
-import { getChartOptions, compareAge, getChartData } from './utils/chartOptions';
+import { getHumanAgeGroupChartOptions, getHumanAgeGroupChartData } from './utils/humanAgeGroupChartOptions';
 import PropTypes from 'prop-types';
+import { HUMAN_AGE_GROUPS_CHART } from './utils/chartTypes';
 
-class PopulationChart extends Component {        
+class HumanAgeGroups extends Component {        
 
     componentDidMount() {          
-        this.props.getHumanChart();
+        this.props.getHumanChart(HUMAN_AGE_GROUPS_CHART);
     }                  
 
-    render (){
-      
+    render (){      
+              
         const { humanChart, humanChartError } = this.props;    
-        const data = getChartData(humanChart);            
-        const options = getChartOptions(data[0], data[1]);
+        const data = getHumanAgeGroupChartData(humanChart);            
+        const options = getHumanAgeGroupChartOptions(data[0], data[1]);
 
         if (humanChartError) {                      
           return <Redirect to='/error' />
@@ -34,7 +35,7 @@ class PopulationChart extends Component {
     }
 }
 
-PopulationChart.propTypes = {
+HumanAgeGroups.propTypes = {
     humanChart: PropTypes.array.isRequired,
     humanChartError: PropTypes.bool.isRequired
 }
@@ -49,8 +50,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-      getHumanChart: (human) => dispatch(getHumanChart())
+      getHumanChart: (type) => dispatch(getHumanChart(type))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PopulationChart);
+export default connect(mapStateToProps, mapDispatchToProps)(HumanAgeGroups);

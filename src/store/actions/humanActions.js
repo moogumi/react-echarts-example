@@ -10,7 +10,7 @@ export const addHuman = (human) => {
             age: parseInt(human.age, 10)
         }).then((response) => {            
             return dispatch({type: 'HUMAN_ADD_SUCCESS', human: response.data.data});
-        }).catch((error) => {
+        }).catch((error) => {            
             return dispatch({type: 'HUMAN_ADD_ERROR', humanAddError: true});
         });        
     }

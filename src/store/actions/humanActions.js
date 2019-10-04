@@ -20,7 +20,7 @@ export const getHumanList = () => {
     return (dispatch, getState) => {                         
         axios.get(getHumanListUrl())
         .then((response) => {                                 
-            return dispatch({type: 'HUMAN_LIST_ERROR', humanList: response.data.data});            
+            return dispatch({type: 'HUMAN_LIST_SUCCESS', humanList: response.data.data});            
         }).catch((error) => {            
             return dispatch({type: 'HUMAN_LIST_ERROR', humanListError: true });            
         });        

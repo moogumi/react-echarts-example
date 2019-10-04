@@ -19,7 +19,7 @@ class HumanList extends Component {
         const { humanList, humanListError } = this.props;
 
         if (humanListError) {               
-            return <Redirect to='/_500' />
+            return <Redirect to='/error' />
         }
 
         const humanCollection = humanList && humanList.map(human => {

@@ -23,7 +23,7 @@ class PopulationChart extends Component {
         const options = getChartOptions(data[0], data[1]);
 
         if (humanChartError) {                      
-          return <Redirect to='/_500' />
+          return <Redirect to='/error' />
         }
         return (
           <div className="container"> 

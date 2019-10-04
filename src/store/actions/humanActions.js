@@ -21,7 +21,8 @@ export const getHumanList = () => {
         axios.get(getHumanListUrl())
         .then((response) => {                                 
             return dispatch({type: 'HUMAN_LIST_SUCCESS', humanList: response.data.data});            
-        }).catch((error) => {            
+        }).catch((error) => {      
+            console.log(error);      
             return dispatch({type: 'HUMAN_LIST_ERROR', humanListError: true });            
         });        
     }

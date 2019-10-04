@@ -7,7 +7,7 @@ import AddHuman from './components/humans/AddHuman';
 import HumanSummary from './components/humans/HumanSummary';
 import Footer from './components/layout/Footer';
 import _404 from './components/errorPages/_404';
-import _500 from './components/errorPages/_500';
+import UnknownError from './components/errorPages/UnknownError';
 
 class App extends Component {
   render () {
@@ -20,6 +20,7 @@ class App extends Component {
             <Route path="/add" component = { AddHuman }></Route>                        
             <Route path="/human/:id" component = { HumanSummary }></Route>
             <Route path="/chart" component = { PopulationChart }></Route>
+            <Route path="/error" component = { UnknownError }></Route>
             <Route path="*" component={ _404 }/>
           </Switch>          
           <Footer />

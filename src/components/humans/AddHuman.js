@@ -24,7 +24,8 @@ class AddHuman extends Component {
         this.props.history.push('/');
     }
 
-    render() {
+    render() {        
+
         return (
             <div className="container">
             <PageTitle pageTitle={"Add Human"} />
@@ -50,16 +51,17 @@ class AddHuman extends Component {
     }
 }
 
-AddHuman.propTypes = {
-    firstName: PropTypes.string.isRequired,
-    lastName: PropTypes.string.isRequired,
-    age: PropTypes.number.isRequired,
-}
-
 const mapDispatchToProps = (dispatch) => {
     return {
         addHuman: (human) => dispatch(addHuman(human))
     }
 }
 
-export default connect(null, mapDispatchToProps)(AddHuman)
+const mapStateToProps = (state) => {
+    const { humanAddError } = state.humans;
+    return {                
+        humanAddError        
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddHuman)

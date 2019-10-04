@@ -42,7 +42,7 @@ class HumanList extends Component {
         
         return (      
             <div className="container">
-                <PageTitle pageTitle={"Person List"} />            
+                <PageTitle pageTitle={"Human List"} />            
                 <div className="collection-header">
                     <div className="row flow-text">
                         <div className="col s5 collection-header-item">

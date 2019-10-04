@@ -57,11 +57,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-const mapStateToProps = (state) => {
-    const { humanAddError } = state.humans;
-    return {                
-        humanAddError        
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(AddHuman)
+export default connect(null, mapDispatchToProps)(AddHuman)

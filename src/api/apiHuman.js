@@ -6,6 +6,12 @@ export const getHumanListUrl = () => {
     )    
 }
 
+export const getHumanChartUrl = () => {           
+    return (        
+        baseUrl + '/humans/'
+    )    
+}
+
 export const getHumanByIdUrl = (id) => {           
     return (        
         baseUrl + "/humans/" + id

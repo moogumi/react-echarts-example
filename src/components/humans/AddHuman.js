@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { addHuman } from '../../store/actions/addHuman';
+import { addHuman } from '../../store/actions/humanActions';
 import { connect } from 'react-redux';
 import PageTitle from '../layout/PageTitle';
+import PropTypes from 'prop-types';
 
 class AddHuman extends Component {
     
@@ -47,6 +48,12 @@ class AddHuman extends Component {
             </div>
         )
     }
+}
+
+AddHuman.propTypes = {
+    firstName: PropTypes.string.isRequired,
+    lastName: PropTypes.string.isRequired,
+    age: PropTypes.number.isRequired,
 }
 
 const mapDispatchToProps = (dispatch) => {

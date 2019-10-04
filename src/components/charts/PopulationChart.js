@@ -1,92 +1,56 @@
-import React, { useState, useEffect } from 'react';
+import React, { Component } from 'react';
 import ReactEcharts from 'echarts-for-react';
+import { Link } from 'react-router-dom';
 import PageTitle from '../layout/PageTitle';
 import { getHumanListUrl } from '../../api/apiHuman';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router'
+import { getHumanChart } from '../../store/actions/chartActions';
+import { getChartOptions, compareAge, getChartData } from './utils/chartOptions';
+import PropTypes from 'prop-types';
 
+class PopulationChart extends Component {        
 
-const PopulationChart = () =>{
+    componentDidMount() {          
+        this.props.getHumanChart();
+    }                  
 
-    const [humans, setHumans] = useState([]);
-    
-    useEffect(() => {        
-        const fetchData = async () => {            
-            const result = await axios.get(getHumanListUrl());       
-            setHumans(result.data.data);            
+    render (){
+      
+        const { humanChart, humanChartError } = this.props;    
+        const data = getChartData(humanChart);            
+        const options = getChartOptions(data[0], data[1]);
+
+        if (humanChartError) {                      
+          return <Redirect to='/_500' />
         }
-        fetchData();
-    }, []);
-
-    const compareAge = ( a, b ) => {        
-        if (a.age < b.age )
-          return -1;        
-        if (a.age > b.age )
-          return 1;        
-        return 0;
-      }
-
-    const sorted = humans && [...humans].sort(compareAge);    
-    const ages = sorted && [...new Set(sorted.map( human =>  { return( human.age + " y.o." ) }))];
- 
-    const humansByAge = sorted && sorted.reduce((p, c) => {        
-        if (!p.hasOwnProperty(c.age)) {
-          p[c.age] = 0;
-        }
-        p[c.age]++;
-        return p;
-      }, {});        
-
-      const counts = humansByAge && Object.keys(humansByAge).map(k => { return humansByAge[k]});        
-
-    const getOption = () =>{
-        return {                        
-            legend: {
-                data:['Humans by Ages']
-            },
-            xAxis: {
-                data: ages,
-                name: "age",
-                axisLine :{
-                    lineStyle :{
-                        color: "#616161",
-                        width: 2
-                    }
-                  },
-                  axisLabel :{           
-                    color: "#616161",         
-                    fontWeight : "bold",                        
-                  }                  
-            },
-            yAxis: {
-                interval: 1,
-                name: "population",
-                axisLine :{
-                  lineStyle :{
-                      color: "#616161",
-                      width: 2
-                  }
-                },
-                axisLabel :{         
-                    color: "#616161",           
-                    fontWeight : "bold",                        
-                }              
-            },
-            series: [{
-                name: 'Humans',
-                type: 'bar',
-                data: counts
-            }],
-            color: ['#8bc34a']
-        };
-        
+        return (
+          <div className="container"> 
+            <PageTitle pageTitle={"Population Chart"} />
+            <ReactEcharts option={options} />
+          </div> 
+        )    
     }
-    
-    return (
-        <div className="container"> 
-          <PageTitle pageTitle={"Population Chart"} />
-          <ReactEcharts option={ getOption() } />
-        </div>            
-    )
 }
 
-export default PopulationChart;
+PopulationChart.propTypes = {
+    humanChart: PropTypes.array.isRequired,
+    humanChartError: PropTypes.bool.isRequired
+}
+
+const mapStateToProps = (state) => {                    
+    const { humanChart, humanChartError } = state.chart;
+    return {                
+        humanChart,
+        humanChartError        
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+      getHumanChart: (human) => dispatch(getHumanChart())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PopulationChart);

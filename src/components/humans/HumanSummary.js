@@ -5,6 +5,14 @@ import PageTitle from '../layout/PageTitle'
 import { getHumanByIdUrl } from '../../api/apiHuman';
 import axios from 'axios';
 
+/*
+
+For demonstration purposes this component is created using React Hooks. 
+The whole app can be created in such manner, as well as this component can be 
+rewritten to use Redux
+
+*/
+
 const HumanSummary = ( props ) => {
         
     const [error, setError] = useState(false);
